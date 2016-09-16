@@ -14,8 +14,8 @@
 
 $(call inherit-product, device/ark/peach/full_peach.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common Cardinal stuff.
+$(call inherit-product, vendor/cardinal/config/common_full_phone.mk)
 
 #Assert
 TARGET_OTA_ASSERT_DEVICE := peach,benefit,ark_benefit_a3,benefit_a3,a3,ark
@@ -23,7 +23,7 @@ TARGET_OTA_ASSERT_DEVICE := peach,benefit,ark_benefit_a3,benefit_a3,a3,ark
 # Must define platform variant before including any common things
 TARGET_BOARD_PLATFORM_VARIANT := msm8916
 
-PRODUCT_NAME := cm_peach
+PRODUCT_NAME := cardinal_peach
 BOARD_VENDOR := ark
 PRODUCT_DEVICE := peach
 
