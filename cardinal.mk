@@ -15,7 +15,7 @@
 $(call inherit-product, device/ark/peach/full_peach.mk)
 
 # Inherit some common Cardinal stuff.
-$(call inherit-product, vendor/cardinal/config/common_full_phone.mk)
+$(call inherit-product, vendor/cardinal/common.mk)
 
 #Assert
 TARGET_OTA_ASSERT_DEVICE := peach,benefit,ark_benefit_a3,benefit_a3,a3,ark
