@@ -36,3 +36,7 @@ PRODUCT_BRAND := ARK
 TARGET_VENDOR := ark
 TARGET_VENDOR_PRODUCT_NAME := peach
 TARGET_VENDOR_DEVICE_NAME := peach
+
+# Cardinal Developers
+PRODUCT_BUILD_PROP_OVERRIDES += \
+        DEVICE_MAINTAINERS="Ilya Lebedev (lol_max_lik)"
