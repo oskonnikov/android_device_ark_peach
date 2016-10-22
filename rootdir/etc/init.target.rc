@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2012, 2014, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2012, 2014, 2016, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,124 +27,66 @@
 
 import init.target.power.rc
 
+on early-init
+    #set non-stand-charger can used
+    write /sys/module/phy_msm_usb/parameters/floated_charger_enable Y
+
 on boot
     # Torch
-    chown system camera /sys/class/leds/torch-light/brightness
-    chmod 0660 /sys/class/leds/torch-light/brightness
-
-    # LEDs
-    chown system system /sys/class/leds/red/blink
-    chown system system /sys/class/leds/red/led_time
-    chown system system /sys/class/leds/red/brightness
-    chown system system /sys/class/leds/green/blink
-    chown system system /sys/class/leds/green/led_time
-    chown system system /sys/class/leds/green/brightness
-    chown system system /sys/class/leds/blue/blink
-    chown system system /sys/class/leds/blue/led_time
-    chown system system /sys/class/leds/blue/brightness
-
-    # Reset LEDs brightness
-    write /sys/class/leds/red/brightness 0
-    write /sys/class/leds/green/brightness 0
-    write /sys/class/leds/blue/brightness 0
+    chown system camera /sys/class/leds/torch-light0/brightness
+    chown system camera /sys/class/leds/flashlight/brightness
+    chmod 0660 /sys/class/leds/torch-light0/brightness
+    chmod 0660 /sys/class/leds/flashlight/brightness
 
     # charger
-    chown system system /sys/class/power_supply/battery/capacity
-    chmod 0660 /sys/class/power_supply/battery/capacity
-    chown root /sys/class/power_supply/battery/current_now
-    chown root /sys/class/power_supply/battery/voltage_now
-    chmod 0664 /sys/class/power_supply/battery/current_now
-    chmod 0664 /sys/class/power_supply/battery/voltage_now
+    chown system system /sys/bus/i2c/drivers/lc709203/batt_capacity
+    chmod 0660 /sys/bus/i2c/drivers/lc709203/batt_capacity
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
 
-    # MPU6050 accelerometer
-    chown system system /sys/class/sensors/MPU6050-accel/calibrate
-    chown system system /sys/class/sensors/MPU6050-accel/enable
-    chown system system /sys/class/sensors/MPU6050-accel/enable_wakeup
-    chown system system /sys/class/sensors/MPU6050-accel/flush
-    chown system system /sys/class/sensors/MPU6050-accel/max_latency
-    chown system system /sys/class/sensors/MPU6050-accel/poll_delay
-    chmod 0660 /sys/class/sensors/MPU6050-accel/calibrate
-    chmod 0660 /sys/class/sensors/MPU6050-accel/enable
-    chmod 0660 /sys/class/sensors/MPU6050-accel/enable_wakeup
-    chmod 0660 /sys/class/sensors/MPU6050-accel/flush
-    chmod 0660 /sys/class/sensors/MPU6050-accel/max_latency
-    chmod 0660 /sys/class/sensors/MPU6050-accel/poll_delay
+    # stk3x1x light
+    chown system system /sys/class/sensors/stk3x1x-light/calibrate
+    chown system system /sys/class/sensors/stk3x1x-light/enable
+    chown system system /sys/class/sensors/stk3x1x-light/enable_wakeup
+    chown system system /sys/class/sensors/stk3x1x-light/flush
+    chown system system /sys/class/sensors/stk3x1x-light/max_latency
+    chown system system /sys/class/sensors/stk3x1x-light/poll_delay
+    chmod 0664 /sys/class/sensors/stk3x1x-light/calibrate
+    chmod 0664 /sys/class/sensors/stk3x1x-light/enable
+    chmod 0664 /sys/class/sensors/stk3x1x-light/enable_wakeup
+    chmod 0664 /sys/class/sensors/stk3x1x-light/flush
+    chmod 0664 /sys/class/sensors/stk3x1x-light/max_latency
+    chmod 0664 /sys/class/sensors/stk3x1x-light/poll_delay
 
-    # MPU6050 gyroscope
-    chown system system /sys/class/sensors/MPU6050-gyro/calibrate
-    chown system system /sys/class/sensors/MPU6050-gyro/enable
-    chown system system /sys/class/sensors/MPU6050-gyro/enable_wakeup
-    chown system system /sys/class/sensors/MPU6050-gyro/flush
-    chown system system /sys/class/sensors/MPU6050-gyro/max_latency
-    chown system system /sys/class/sensors/MPU6050-gyro/poll_delay
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/calibrate
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/enable
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/enable_wakeup
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/flush
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/max_latency
-    chmod 0660 /sys/class/sensors/MPU6050-gyro/poll_delay
+    # stk3x1x proximity
+    chown system system /sys/class/sensors/stk3x1x-proximity/calibrate
+    chown system system /sys/class/sensors/stk3x1x-proximity/enable
+    chown system system /sys/class/sensors/stk3x1x-proximity/enable_wakeup
+    chown system system /sys/class/sensors/stk3x1x-proximity/flush
+    chown system system /sys/class/sensors/stk3x1x-proximity/max_latency
+    chown system system /sys/class/sensors/stk3x1x-proximity/poll_delay
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/calibrate
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/enable
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/enable_wakeup
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/flush
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/max_latency
+    chmod 0664 /sys/class/sensors/stk3x1x-proximity/poll_delay
 
-    # LTR553 light
-    chown system system /sys/class/sensors/ltr553-light/calibrate
-    chown system system /sys/class/sensors/ltr553-light/enable
-    chown system system /sys/class/sensors/ltr553-light/enable_wakeup
-    chown system system /sys/class/sensors/ltr553-light/flush
-    chown system system /sys/class/sensors/ltr553-light/max_latency
-    chown system system /sys/class/sensors/ltr553-light/poll_delay
-    chmod 0660 /sys/class/sensors/ltr553-light/calibrate
-    chmod 0660 /sys/class/sensors/ltr553-light/enable
-    chmod 0660 /sys/class/sensors/ltr553-light/enable_wakeup
-    chmod 0660 /sys/class/sensors/ltr553-light/flush
-    chmod 0660 /sys/class/sensors/ltr553-light/max_latency
-    chmod 0660 /sys/class/sensors/ltr553-light/poll_delay
-
-    # LTR553 proximity
-    chown system system /sys/class/sensors/ltr553-proximity/calibrate
-    chown system system /sys/class/sensors/ltr553-proximity/enable
-    chown system system /sys/class/sensors/ltr553-proximity/enable_wakeup
-    chown system system /sys/class/sensors/ltr553-proximity/flush
-    chown system system /sys/class/sensors/ltr553-proximity/max_latency
-    chown system system /sys/class/sensors/ltr553-proximity/poll_delay
-    chmod 0660 /sys/class/sensors/ltr553-proximity/calibrate
-    chmod 0660 /sys/class/sensors/ltr553-proximity/enable
-    chmod 0660 /sys/class/sensors/ltr553-proximity/enable_wakeup
-    chmod 0660 /sys/class/sensors/ltr553-proximity/flush
-    chmod 0660 /sys/class/sensors/ltr553-proximity/max_latency
-    chmod 0660 /sys/class/sensors/ltr553-proximity/poll_delay
-
-    # AKM09911 magnetic sensor
-    chown system system /sys/class/sensors/akm09911-mag/calibrate
-    chown system system /sys/class/sensors/akm09911-mag/enable
-    chown system system /sys/class/sensors/akm09911-mag/enable_wakeup
-    chown system system /sys/class/sensors/akm09911-mag/flush
-    chown system system /sys/class/sensors/akm09911-mag/max_latency
-    chown system system /sys/class/sensors/akm09911-mag/poll_delay
-    chmod 0660 /sys/class/sensors/akm09911-mag/calibrate
-    chmod 0660 /sys/class/sensors/akm09911-mag/enable
-    chmod 0660 /sys/class/sensors/akm09911-mag/enable_wakeup
-    chmod 0660 /sys/class/sensors/akm09911-mag/flush
-    chmod 0660 /sys/class/sensors/akm09911-mag/max_latency
-    chmod 0660 /sys/class/sensors/akm09911-mag/poll_delay
-
-    # YAS537 magnetic sensor
-    chown system system /sys/class/sensors/yas537-mag/calibrate
-    chown system system /sys/class/sensors/yas537-mag/enable
-    chown system system /sys/class/sensors/yas537-mag/enable_wakeup
-    chown system system /sys/class/sensors/yas537-mag/flush
-    chown system system /sys/class/sensors/yas537-mag/max_latency
-    chown system system /sys/class/sensors/yas537-mag/poll_delay
-    chmod 0660 /sys/class/sensors/yas537-mag/calibrate
-    chmod 0660 /sys/class/sensors/yas537-mag/enable
-    chmod 0660 /sys/class/sensors/yas537-mag/enable_wakeup
-    chmod 0660 /sys/class/sensors/yas537-mag/flush
-    chmod 0660 /sys/class/sensors/yas537-mag/max_latency
-    chmod 0660 /sys/class/sensors/yas537-mag/poll_delay
-
-    chown system input /sys/class/sensors/yas537-mag/hard_offset
-    chown system system /sys/class/sensors/yas537-mag/self_test
-    chmod 0664 /sys/class/sensors/yas537-mag/hard_offset
-    chmod 0664 /sys/class/sensors/yas537-mag/self_test
-    write /sys/class/sensors/yas537-mag/position 5
+    # BMA
+    chown system system /sys/class/sensors/bma2x2-accel/calibrate
+    chown system system /sys/class/sensors/bma2x2-accel/enable
+    chown system system /sys/class/sensors/bma2x2-accel/enable_wakeup
+    chown system system /sys/class/sensors/bma2x2-accel/flush
+    chown system system /sys/class/sensors/bma2x2-accel/max_latency
+    chown system system /sys/class/sensors/bma2x2-accel/poll_delay
+    chmod 0664 /sys/class/sensors/bma2x2-accel/calibrate
+    chmod 0664 /sys/class/sensors/bma2x2-accel/enable
+    chmod 0664 /sys/class/sensors/bma2x2-accel/enable_wakeup
+    chmod 0664 /sys/class/sensors/bma2x2-accel/flush
+    chmod 0664 /sys/class/sensors/bma2x2-accel/max_latency
+    chmod 0664 /sys/class/sensors/bma2x2-accel/poll_delay
 
     # Set per_process_reclaim tuning parameters
     write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
@@ -157,17 +99,11 @@ on boot
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
     write /sys/block/mmcblk0/bdi/read_ahead_kb 128
 
-on charger
-   wait /dev/block/bootdevice/by-name/system
-   mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-   chown root system /sys/class/power_supply/battery/current_now
-   chown root system /sys/class/power_supply/battery/voltage_now
-   chmod 0664 /sys/class/power_supply/battery/current_now
-   chmod 0664 /sys/class/power_supply/battery/voltage_now
+on post-fs-data
+     mkdir /data/dpm/nsrm 0771 system system
+     chown system system /data/dpm/nsrm
 
 on init
-    export LD_SHIM_LIBS /system/vendor/lib/libWVStreamControlAPI_L3.so|libshim_boringssl.so
-    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
 on property:service.bootanim.exit=1
     # Enable swap
@@ -176,51 +112,67 @@ on property:service.bootanim.exit=1
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
 
-service imsqmidaemon /system/bin/imsqmidaemon
+service calibacc /system/bin/accelcal
     class main
-    user system
-    socket ims_qmid stream 0660 system radio
-    group radio net_raw log qcom_diag
-
-service imsdatadaemon /system/bin/imsdatadaemon
-    class main
-    user system
-    socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log qcom_diag net_admin
+    oneshot
     disabled
 
-on property:sys.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+on property:sys.sensors.acc=*
+    start calibacc
 
-service ims_rtp_daemon /system/bin/ims_rtp_daemon
-   class main
-   user system
-   socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag qcom_diag log
-   disabled
+service charger /charger
+    class charger
+    group log
 
-service imscmservice /system/bin/imscmservice
-   class main
-   user system
-   group radio net_raw diag qcom_diag log
-   disabled
-
-on property:sys.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start imscmservice
-
-service memcheck /system/bin/memcheck
+service vm_bms /system/bin/vm_bms
+    class core
     user root
     group root
-    class late_start
+
+on charger
+   wait /dev/block/bootdevice/by-name/system
+   mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+   chown root system /sys/class/power_supply/bms/current_now
+   chown root system /sys/class/power_supply/bms/voltage_ocv
+   chmod 0664 /sys/class/power_supply/bms/current_now
+   chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+   write /sys/module/lpm_levels/system/cpu0/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/wfi/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/standalone_pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu1/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/cpu0/pc/suspend_enabled N
+   write /sys/module/lpm_levels/system/cpu1/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/cpu2/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/cpu3/pc/suspend_enabled Y
+   write /sys/module/lpm_levels/system/l2-pc/idle_enabled Y
+   write /sys/module/lpm_levels/system/l2-cache-active/idle_enabled Y
+   write /sys/module/lpm_levels/system/l2-pc/suspend_enabled Y
+   write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
+   start vm_bms
+
+service sensord /system/bin/sensord
+    class main
+    user root
+
+on property:init.svc.zygote=restarting
+    restart sensord
+
+service calibacc /system/bin/accelcal
+    class main
     oneshot
+    disabled
+
+on property:sys.sensors.acc=*
+    start calibacc
 
 on property:sys.boot_completed=1
-    start config_lineout
-
-service config_lineout /system/bin/sh /system/etc/init.lineout.sh
-    user root
-    group root
-    class late_start
-    oneshot
-    disabled
+    # Temp hack to fix torch not being registered on boot
+    restart media

@@ -21,8 +21,8 @@
     <string name="config_perf_profile_default_entry">1</string>
 
     <!-- Default wi-fi hotspot ssid -->
-    <string name="config_wifiHotSpotSsid" translatable="false">Redmi 2</string>
+    <string name="config_wifiHotSpotSsid" translatable="false">Benefit A3</string>
     <!-- Default wi-fi direct name -->
-    <string name="config_wifiDirectName" translatable="false">Redmi 2</string>
+    <string name="config_wifiDirectName" translatable="false">Benefit A3</string>
 
 </resources>

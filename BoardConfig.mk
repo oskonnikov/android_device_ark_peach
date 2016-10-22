@@ -16,7 +16,7 @@
 FORCE_32_BIT := true
 TW_INCLUDE_CRYPTO := true
 
-DEVICE_PATH := device/wingtech/wt88047
+DEVICE_PATH := device/ark/peach
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
@@ -56,16 +56,15 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += sched_enable_hmp=1 phy-msm-usb.floated_charger_enable=1
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
-TARGET_KERNEL_SOURCE := kernel/wingtech/msm8916
-TARGET_KERNEL_CONFIG := cyanogenmod_wt88047_defconfig
+TARGET_KERNEL_SOURCE := kernel/ark/msm8916
+TARGET_KERNEL_CONFIG := cyanogenmod_peach_defconfig
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 ifneq ($(FORCE_32_BIT),true)
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -89,7 +88,7 @@ KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := HM2014811,HM2014812,HM2014813,HM2014814,HM2014815,HM2014816,HM2014817,HM2014818,HM2014819,HM2014820,HM2014821,HM2014112,wt88047,wt86047
+TARGET_OTA_ASSERT_DEVICE := peach,benefit,ark_benefit_a3,benefit_a3,a3,ark
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
@@ -104,14 +103,13 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BLUETOOTH_HCI_USE_MCT := true
 
 # Camera
-BOARD_CAMERA_SENSORS := ov2680_5987fhq ov8865_q8v18a ov2680_skuhf
+BOARD_CAMERA_SENSORS := s5k4h5_8916 gc2355
 TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_GLOBAL_CFLAGS += -DCONFIG_WT88047_CAMERA -DCAMERA_VENDOR_L_COMPAT
+TARGET_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BOARD_HAL_STATIC_LIBRARIES := libhealthd.wt88047
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
@@ -165,11 +163,6 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_wt88047
-TARGET_UNIFIED_DEVICE := true
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-
 # Keymaster
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
@@ -220,4 +213,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
--include vendor/wingtech/wt88047/BoardConfigVendor.mk
+-include vendor/ark/peach/BoardConfigVendor.mk

@@ -1,5 +1,5 @@
-Device configuration for Redmi 2
+Device configuration for Benefit A3
 ==============================
 This device tree supports:
 
-    redmi2 (wt88047 variant)
+    Benefit A3 (peach variant)
