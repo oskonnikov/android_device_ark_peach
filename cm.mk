@@ -24,6 +24,9 @@ $(call inherit-product, device/ark/peach/device.mk)
 # Must define platform variant before including any common things
 TARGET_BOARD_PLATFORM_VARIANT := msm8916
 
+# Locales
+PRODUCT_LOCALES := en_US ru_RU uk_UA
+
 # Device identifier. This must come after all inclusions
 BOARD_VENDOR := ark
 PRODUCT_BRAND := ARK
