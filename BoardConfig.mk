@@ -197,6 +197,9 @@ BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true
 
+#Disable ninja build
+USE_NINJA := false
+
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
