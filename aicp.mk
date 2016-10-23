@@ -15,8 +15,8 @@
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common AICP stuff.
+$(call inherit-product, vendor/aicp/configs/common.mk)
 
 # Inherit from peach device
 $(call inherit-product, device/ark/peach/device.mk)
@@ -31,7 +31,7 @@ PRODUCT_LOCALES := en_US ru_RU uk_UA
 BOARD_VENDOR := ark
 PRODUCT_BRAND := ARK
 PRODUCT_DEVICE := peach
-PRODUCT_NAME := cm_peach
+PRODUCT_NAME := aicp_peach
 PRODUCT_MANUFACTURER := ARK
 PRODUCT_MODEL := Benefit A3
 
