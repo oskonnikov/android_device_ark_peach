@@ -17,7 +17,7 @@ Camera  | 8MPx, LED Flash
 This branch is for building CyanogenMod 14.0.
 
 Working:
-- Not tested
+- All
 
 Not working/Bugs:
-- Not tested
+- Videorecord(footej camera is work)
