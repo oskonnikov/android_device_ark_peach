@@ -237,10 +237,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.fusion.magfield.max=250
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
 # Build libstlport for vendor blobs
 PRODUCT_PACKAGES += \
     libstlport
