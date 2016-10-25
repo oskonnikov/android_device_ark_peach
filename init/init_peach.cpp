@@ -277,10 +277,6 @@ void vendor_load_properties()
         property_set("telephony.lteOnCdmaDevice", "0");
     }
 
-    /* Unified description and fingerprint for now */
-    property_set("ro.build.description", "wt88047-user 5.1.1 LMY47V 6.1.28 release-keys");
-    property_set("ro.build.fingerprint", "Xiaomi/wt88047/wt88047:5.1.1/LMY47V/6.1.28:user/release-keys");
-
     ERROR("Setup %s properties done!\n", board_id);
 
     rc = get_img_version(modem_version, IMG_VER_BUF_LEN);
